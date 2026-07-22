@@ -1,0 +1,883 @@
+/* ============================================
+ * MIUIROM - 主样式表
+ * 设计风格: 中国风 + 现代简约 (参考MSDN i tell you)
+ * ============================================ */
+
+/* === 基础重置与变量 === */
+:root {
+    --primary: #ff6700;
+    --primary-dark: #e55a00;
+    --primary-light: #ff8c3a;
+    --bg: #f5f5f5;
+    --bg-white: #ffffff;
+    --bg-card: #ffffff;
+    --text: #333333;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border: #e0e0e0;
+    --border-light: #f0f0f0;
+    --success: #52c41a;
+    --warning: #faad14;
+    --danger: #ff4d4f;
+    --info: #1890ff;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+    --radius: 8px;
+    --radius-sm: 4px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-mono: "SF Mono", "Fira Code", "Consolas", "Monaco", monospace;
+    --max-width: 1200px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-dark); text-decoration: underline; }
+
+/* === 导航栏 === */
+.navbar {
+    background: var(--bg-white);
+    border-bottom: 2px solid var(--primary);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none !important;
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    background: var(--primary);
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.nav-links {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+}
+
+.nav-links a {
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+    background: rgba(255, 103, 0, 0.08);
+    text-decoration: none;
+}
+
+.nav-search {
+    flex-shrink: 0;
+}
+
+.nav-search form {
+    display: flex;
+    gap: 0;
+}
+
+.search-input {
+    width: 200px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-right: none;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+}
+
+.search-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-left: none;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--bg);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.search-btn:hover { background: var(--primary); color: #fff; }
+
+/* === 头部横幅 === */
+.hero {
+    background: linear-gradient(135deg, #ff6700 0%, #ff8c3a 50%, #ff6700 100%);
+    color: #fff;
+    padding: 48px 0;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(255, 103, 0, 0.2);
+}
+
+.hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+/* === 主要内容区 === */
+main { padding: 24px 0 48px; }
+
+.section {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.section-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.more-link {
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.device-count {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* === 页面标题 === */
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* === 面包屑 === */
+.breadcrumb {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.breadcrumb a { color: var(--text-secondary); }
+.breadcrumb span { color: var(--text); }
+
+/* === 设备信息头部 === */
+.device-header {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.device-info h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.device-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.meta-item code {
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--primary);
+}
+
+.device-total {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* === 筛选栏 === */
+.filter-bar {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.filter-group:last-child { margin-bottom: 0; }
+
+.filter-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-right: 4px;
+    min-width: 40px;
+}
+
+.filter-item {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--bg);
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.filter-item:hover {
+    color: var(--primary);
+    background: rgba(255, 103, 0, 0.08);
+    text-decoration: none;
+}
+
+.filter-item.active {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* === ROM表格 === */
+.rom-table-wrapper {
+    overflow-x: auto;
+}
+
+.rom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.rom-table thead {
+    background: #fafafa;
+}
+
+.rom-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+}
+
+.rom-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-light);
+    white-space: nowrap;
+}
+
+.rom-table tbody tr:hover {
+    background: #fafafa;
+}
+
+.device-link {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.device-link:hover {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.device-link .codename {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.version {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--primary);
+}
+
+/* === 徽章 === */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge-miui { background: #e6f7ff; color: #1890ff; }
+.badge-hyperos { background: #f6ffed; color: #52c41a; }
+.badge-flash { background: #fff7e6; color: #fa8c16; }
+.badge-eol { background: #fff2f0; color: #ff4d4f; }
+
+/* === 按钮 === */
+.btn {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn-sm {
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.btn-download {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-download:hover {
+    background: var(--primary-dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-md5 {
+    background: #f5f5f5;
+    color: var(--text-secondary);
+    margin-left: 4px;
+    cursor: help;
+}
+
+.btn-large {
+    padding: 12px 32px;
+    font-size: 16px;
+}
+
+/* === 设备网格 === */
+.device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.device-grid.large {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.device-card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: var(--bg-white);
+}
+
+.device-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-hover);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.device-card .device-brand {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.device-card .device-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.device-card .device-codename {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.device-card .device-model {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.device-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.tag {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+.tag-category { background: #f0f0f0; color: #666; }
+.tag-eol { background: #fff2f0; color: #ff4d4f; }
+
+/* === 地区网格 === */
+.region-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+.region-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: var(--bg-white);
+}
+
+.region-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-hover);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.region-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.region-count {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.region-devices {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* === ROM分组标题 === */
+.rom-section {
+    margin-bottom: 24px;
+}
+
+.rom-region-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.rom-count {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+/* === 搜索页 === */
+.search-box-large {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.search-box-large form {
+    display: flex;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input-large {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-input-large:focus {
+    border-color: var(--primary);
+}
+
+.search-hint {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.search-results h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.search-results > p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+/* === 空状态 === */
+.empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-muted);
+}
+
+.empty-state p {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.empty-state code {
+    background: var(--bg);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--primary);
+}
+
+/* === 信息横幅 === */
+.info-banner {
+    background: #fff7e6;
+    border: 1px solid #ffd591;
+    border-radius: var(--radius);
+    padding: 12px 20px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #ad6800;
+}
+
+/* === 信息区域 === */
+.info-section {
+    background: #fafafa;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.info-card {
+    padding: 16px;
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+}
+
+.info-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+.info-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* === 工具页 === */
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.tool-card {
+    padding: 20px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    background: var(--bg-white);
+}
+
+.tool-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.tool-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.tool-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.tutorial-list {
+    display: grid;
+    gap: 20px;
+}
+
+.tutorial-item {
+    padding: 20px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+}
+
+.tutorial-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--primary);
+}
+
+.tutorial-item ol {
+    padding-left: 20px;
+}
+
+.tutorial-item li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+}
+
+.warning-list {
+    list-style: none;
+}
+
+.warning-list li {
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.warning-list li::before {
+    content: "!";
+    position: absolute;
+    left: 0;
+    color: var(--warning);
+    font-weight: 700;
+}
+
+.show-more {
+    text-align: center;
+    margin-top: 16px;
+}
+
+/* === 页脚 === */
+.footer {
+    background: var(--bg-white);
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    text-align: center;
+    margin-top: 48px;
+}
+
+.footer p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.footer-desc {
+    font-size: 12px;
+}
+
+/* === 响应式 === */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 16px;
+    }
+    
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 8px;
+    }
+    
+    .nav-search {
+        display: none;
+    }
+    
+    .hero {
+        padding: 32px 0;
+    }
+    
+    .hero h1 {
+        font-size: 24px;
+    }
+    
+    .hero-stats {
+        gap: 24px;
+    }
+    
+    .stat-number {
+        font-size: 22px;
+    }
+    
+    .section {
+        padding: 16px;
+    }
+    
+    .device-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .rom-table {
+        font-size: 12px;
+    }
+    
+    .rom-table th,
+    .rom-table td {
+        padding: 6px 8px;
+    }
+    
+    .search-box-large form {
+        flex-direction: column;
+    }
+}
